@@ -1,9 +1,10 @@
 {
-  "name": "resume-builder",
+  "name": "pet-needs-store",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon run ./bin/www"
+    "start": "node run ./bin/www",
+    "dev": "nodemon run ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
