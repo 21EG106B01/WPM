@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\app_server",
-    "\\app_server\\controller",
-    "\\app_server\\routes",
-    "\\app_server\\views"
+    ""
   ],
-  "SelectedNode": "\\app_server\\views\\index.pug",
+  "SelectedNode": "\\node_modules",
   "PreviewInSolutionExplorer": false
 }
