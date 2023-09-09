@@ -3,15 +3,11 @@ extends layout
 block content
 	h1= title
 	
-	.row
-		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12')
-			a(href='/') Homepage 
-		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12')
-			a(href='/location/') Location Info 
-		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12')
-			a(href='/location/review/new') Add Review 
-		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12')
-			a(href='/about/') About Us 
+	.row.navbar
+		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12 navbtn' onclick='location.href="/"') Homepage 
+		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12 navbtn' onclick='location.href="/location/"') Location Info 
+		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12 navbtn' onclick='location.href="/location/review/new"') Add Review 
+		button(class='col-lg-3 col-md-6 col-sm-12 col-xs-12 navbtn' onclick='location.href="/about/"') About Us 
 
 	.row
 		p Welcome to #{title}

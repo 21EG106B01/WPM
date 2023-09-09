@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\app_server",
+    "\\app_server\\views",
+    "\\bin",
+    "\\public",
+    "\\public\\bootstrap",
+    "\\public\\bootstrap\\css"
   ],
-  "SelectedNode": "\\node_modules",
+  "SelectedNode": "\\public\\bootstrap\\css\\amelia.bootstrap.min.css",
   "PreviewInSolutionExplorer": false
 }
