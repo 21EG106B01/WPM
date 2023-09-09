@@ -3,11 +3,12 @@
     "",
     "\\app_server",
     "\\app_server\\views",
-    "\\bin",
     "\\public",
     "\\public\\bootstrap",
-    "\\public\\bootstrap\\css"
+    "\\public\\bootstrap\\css",
+    "\\public\\bootstrap\\js",
+    "\\public\\stylesheets"
   ],
-  "SelectedNode": "\\public\\bootstrap\\css\\amelia.bootstrap.min.css",
+  "SelectedNode": "\\public\\stylesheets\\style.css",
   "PreviewInSolutionExplorer": false
 }
