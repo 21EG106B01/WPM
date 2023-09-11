@@ -4,16 +4,15 @@ html
 		meta(name='viewpoint', content='width=device-width, initial-scale=1.0')
 		title= title
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
-		//link(rel='stylesheet', href='/bootstrap/css/amelia.bootstrap.min.css')
 		link(rel='stylesheet', href='/stylesheets/all.min.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
     
 	body
-		nav.navbar.fixed-top.navbar-expand-md.navbar-dark
+		nav.navbar.fixed-top.navbar-expand-md
 			.container
 				a.navbar-brand(href='/') Loc8r
-					button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain')
-						span.navbar_toggler-icon
+				button.navbar-toggler.navbar-toggler-left(type='button', data-toggle='collapse', data-target='#navbarMain')
+					span.navbar_toggler-icon
 				#navbarMain.navbar-collapse.collapse
 					ul.navbar-nav.mr-auto
 						li.nav-item
@@ -26,6 +25,7 @@ html
 				.col-12
 					small &copy; Getting Mean - Simon Holmes/Clive Harber 2018
 
-	script(src='/javascripts/jquery-1.11.1.min.js')
+	script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js')
 	script(src='/bootstrap/js/bootstrap.min.js')
 
