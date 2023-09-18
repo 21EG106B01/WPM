@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\app_server",
-    "\\app_server\\models",
-    "\\app_server\\routes",
+    "\\app_server\\controller",
     "\\app_server\\views"
   ],
-  "SelectedNode": "\\app_server\\views\\index.pug",
+  "SelectedNode": "\\app_server\\views\\locations-list.pug",
   "PreviewInSolutionExplorer": false
 }

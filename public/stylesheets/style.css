@@ -130,14 +130,20 @@ body {
     background-color: #1e7e34;
 }
 
+.img-container {
+    display: flex;
+    align-items: center;
+}
+
 .prod-desc {
     margin-bottom: 0.5rem;
 }
 
 .prod-img {
     max-width: 100%;
-    max-height: 100%;
+    height: 40vh;
     padding: 5px;
+    flex: 1;
 }
 
 .prod-content {

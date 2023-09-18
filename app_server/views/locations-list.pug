@@ -14,7 +14,8 @@ block content
 				each product in products
 					.card.col-lg-4.col-md-6.col-12
 						.card-block.prod-card
-							img.prod-img(src= product.imgSrc)
+							.img-container
+								img.prod-img(src= product.imgSrc)
 							.prod-content
 								h4
 									a(href="/location")= product.name
