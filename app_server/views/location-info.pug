@@ -1,10 +1,12 @@
 extends layout
+include _includes/sharedHTMLfunctions
 
 block content
 	.row.banner
 		.col-12
-			h1 Pedigree
-				small &nbsp;Dog Food
+			h1= product.company
+				small &nbsp;
+					#{product.name}
 	.row
 		.col-12.col-lg-9
 			.row
@@ -12,38 +14,24 @@ block content
 					.card.card-primary
 						.card-block
 							h2.card-title Product Images
-							img.img-fluid.rounded.locationmap(src='/resources/pedigree.jpeg')
+							img.img-fluid.rounded(src= product.imgSrc)
 					p.rating
-						i.fas.fa-star
-						i.fas.fa-star
-						i.fas.fa-star
-						i.far.fa-star
-						i.far.fa-star
-					p High quality dog food
-					span.badge.badge-warning
-						| Dog
-					|	&nbsp;
-					span.badge.badge-warning
-						| Food
-					|	&nbsp;
-					span.badge.badge-warning
-						| Medium
-					|	&nbsp;
-					| <br><br>
+						+outRating(product.rating)
+					p= product.smalDesc
+					each tag in product.tags
+						| &nbsp;
+						span.badge.badge-warning= tag
 				.col-12.col-md-6
 					.card.card-primary
 						.card-block
 							h2.card-title Product Description
-							p.card-text PEDIGREE Professional Range adult dog food fulfills the special needs of your dog. The range provides expert nutrition combining high-quality ingredients with the science developed by our veterinarians and nutritionists.
+							p.card-text= product.desc
 					.card.card-primary
 						.card-block
 							h2.card-title Quantity
-							p.card-text.qty 500gm
-								span.qprice RS.260
-							p.card-text.qty 1KG
-								span.qprice RS.500
-							p.card-text.qty 5KG
-								span.qprice RS.2200
+							each pack in product.quantity
+								p.card-text.qty= pack.qty
+									span.qprice= pack.price
 
 			.row
 				.col-12
@@ -51,32 +39,18 @@ block content
 						.card-block
 							a.btn.btn-primary.float-right(href='/location/review/new') Add review
 							h2.card-title Customer reviews
-							.row.review
-								.col-12.no-gutters.review-header
-									span.rating
-										i.fas.fa-star
-										i.fas.fa-star
-										i.fas.fa-star
-										i.fas.fa-star
-										i.far.fa-star
-									span.reviewAuthor  Simon Holmes
-									small.reviewTimestamp  16 February 2017
-								.col-12
-									p Great brand. Bowl gets emptied in 2 minutes by my pet.
-							.row.review
-								.col-12.no-gutters.review-header
-									span.rating
-										i.fas.fa-star
-										i.fas.fa-star
-										i.fas.fa-star
-										i.far.fa-star
-										i.far.fa-star
-									span.reviewAuthor  Charlie Chaplin
-									small.reviewTimestamp  14 February 2017
-								.col-12
-									p It was okay. My dog doesnt eat much
+							each review in reviews
+								.row.review
+									.col-12.no-gutters.review-header
+										span.rating
+											+outRating(review.rating)
+											| &nbsp;
+										span.reviewAuthor=  review.author
+										| &nbsp;
+										small.reviewTimestamp=  review.date
+									.col-12
+										p= review.content
+
 		.col-12.col-lg-3
-			p.lead 
-				| Pedigree offers the best & affordable dog food in India. Explore the nutritionally balanced dog food & learn how to take care of dogs.
-			p 
-				| If you've bought and liked it - or if you don't - please leave a review to help other people just like you.
+			p.lead= sidebar.lead
+			p= sidebar.last

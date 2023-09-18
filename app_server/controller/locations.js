@@ -61,13 +61,48 @@ const homelist = (req, res) => {
     /* GET 'Location info' page */
     const locationInfo = (req, res) => {
         res.render('location-info', {
-            title: 'Location info'
+            title: 'Location info',
+            product: {
+                name: 'Dog Food',
+                company: 'Pedigree',
+                imgSrc: '/resources/pedigree.jpeg',
+                rating: 3,
+                smalDesc: 'Pedigree high quality dog food',
+                tags: ['Dog', 'Food', 'Medium'],
+                desc: 'PEDIGREE Professional Range adult dog food fulfills the special needs of your dog. The range provides expert nutrition combining high-quality ingredients with the science developed by our veterinarians and nutritionists.',
+                quantity: [{
+                    qty: '500GM',
+                    price: '260 RS'
+                }, {
+                    qty: '1KG',
+                    price: '500 RS'
+                }, {
+                    qty: '5KG',
+                    price: '2200 RS'
+                }]
+            },
+            reviews: [{
+                author: 'Simon Holmes',
+                date: '16 February 2017',
+                content: 'Great brand. Bowl gets emptied in 2 minutes by my pet.',
+                rating: 4
+            }, {
+                author: 'Charlie Chaplin',
+                date: '14 February 2017',
+                content: 'It was okay. My dog doesnt eat much.',
+                rating: 3
+            }],
+            sidebar: {
+                lead: 'Pedigree offers the best & affordable dog food in India. Explore the nutritionally balanced dog food & learn how to take care of dogs.',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
         });
     };
     /* GET 'Add review' page */
     const addReview = (req, res) => {
         res.render('location-review-form', {
-            title: 'Add review'
+            title: 'Add review',
+            product: 'Pedigree'
         });
     };
     
