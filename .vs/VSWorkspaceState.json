@@ -2,13 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\app_server",
-    "\\app_server\\views",
-    "\\public",
-    "\\public\\bootstrap",
-    "\\public\\bootstrap\\css",
-    "\\public\\bootstrap\\js",
-    "\\public\\stylesheets"
+    "\\app_server\\models",
+    "\\app_server\\routes",
+    "\\app_server\\views"
   ],
-  "SelectedNode": "\\public\\stylesheets\\style.css",
+  "SelectedNode": "\\app_server\\views\\index.pug",
   "PreviewInSolutionExplorer": false
 }

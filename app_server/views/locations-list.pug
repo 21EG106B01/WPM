@@ -1,69 +1,33 @@
 extends layout
+include _includes/sharedHTMLfunctions
 
 block content
 
 	.row.banner
 		.col-12
-			h1 PetNeeds
-				small &nbsp;Find the best products for your pets
+			h1 #{pageHeader.title}
+				small &nbsp; #{pageHeader.strapline}
 
 	.row
-		.col-12.col-md-8
-
-			.card
-				.card-block
-					h4
-						a(href="/location") Pedigree
-						small &nbsp;
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-							i.far.fa-star
-							i.far.fa-star
-						span.badge.badge-pill.badge-default.float-right 1000 RS
-					p.address 125 High Street, Reading, RG6 1PS
-					p.facilities
-						span.badge.badge-warning Hot drinks
-						span.badge.badge-warning Food
-						span.badge.badge-warning Premium wifi
-
-
-			.card
-				.card-block
-					h4
-						a(href="/location") Kennel
-						small &nbsp;
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-							i.far.fa-star
-						span.badge.badge-pill.badge-default.float-right 2400 RS
-					p.address 125 High Street, Reading, RG6 1PS
-					p.facilities
-						span.badge.badge-warning Coffee
-						span.badge.badge-warning Snacks
-						span.badge.badge-warning Premium wifi
+		.col-12.col-md-9
+			.row
+				each product in products
+					.card.col-lg-4.col-md-6.col-12
+						.card-block.prod-card
+							img.prod-img(src= product.imgSrc)
+							.prod-content
+								h4
+									a(href="/location")= product.name
+									span.badge.badge-pill.badge-default.float-right= product.price
+									<br>
+									small= product.company
+								small
+									+outRating(product.rating)
+								p.prod-desc= product.smalDesc
+								each tag in product.tags
+									| &nbsp;
+									span.badge.badge-warning= tag
 
 
-			.card
-				.card-block
-					h4
-						a(href="/location") Dog Brush
-						small &nbsp;
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-							i.fas.fa-star
-						span.badge.badge-pill.badge-default.float-right 500 RS
-					p.address 125 High Street, Reading, RG6 1PS
-					p.facilities
-						span.badge.badge-warning Fast Food
-						span.badge.badge-warning Cool Drinks
-						span.badge.badge-warning Unlimited Refills
-
-
-
-		.col-12.col-md-4
-			p.lead Looking for grooming products for your pets? PetNeeds helps you find the best qulity products for your pets. Perhaps a brush or food? Let PetNeeds help you find the products you're looking for.
+		.col-12.col-md-3
+			p.lead= sidebar 

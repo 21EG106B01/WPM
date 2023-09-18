@@ -6,10 +6,7 @@ block content
       h1= title
   .row
     .col-12.col-lg-8
-      p
-        | PetNeeds was created to help people find all of their pets' needs and accessories at one place
-        | <br /><br />
-        | This project has been created by <br />
-        | <b>Abdus Samad</b>&nbsp; (21EG106B01)<br />
-        | <b>Kotha Siri</b>&nbsp;  (21EG106B55)<br />
-        | <b>Manichandra</b>&nbsp; (21EG106B59)<br />
+        each line in content
+            p= line
+    .col-lg-4.logo
+        img(src="/resources/favicon.png")
