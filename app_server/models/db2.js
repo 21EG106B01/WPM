@@ -15,4 +15,4 @@ mongoose.connection.on('disconnected', () => {
     console.log('disconnected');
 });
 
-require('./locations');
+require('./products');

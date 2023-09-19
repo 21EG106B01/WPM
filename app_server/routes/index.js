@@ -1,13 +1,13 @@
 const express = require('express');
 const { indexPage } = require('../controller');
 const router = express.Router();
-const ctrlLocations = require('../controller/locations');
+const ctrlProducts = require('../controller/products');
 const ctrlOthers = require('../controller/others');
 
 
-router.get('/', ctrlLocations.homelist);
-router.get('/location', ctrlLocations.locationInfo);
-router.get('/location/review/new', ctrlLocations.addReview);
+router.get('/', ctrlProducts.homelist);
+router.get('/product', ctrlProducts.productInfo);
+router.get('/product/review/new', ctrlProducts.addReview);
 
 router.get('/about', ctrlOthers.about);
 

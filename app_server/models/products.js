@@ -28,7 +28,7 @@ const reviewSchema = new mongoose.Schema({
     }
 });
 
-const locationSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -49,6 +49,6 @@ const locationSchema = new mongoose.Schema({
     reviews: [reviewSchema]
 });
 
-locationSchema.index({ coords: '2dsphere' });
+productSchema.index({ coords: '2dsphere' });
 
-mongoose.model('Location', locationSchema);
+mongoose.model('Product', productSchema);

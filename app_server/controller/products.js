@@ -1,5 +1,5 @@
 const homelist = (req, res) => {
-    res.render('locations-list', {
+    res.render('products-list', {
         title: 'PetNeeds - For all your pets needs',
         pageHeader: {
             title: 'PetNeeds',
@@ -58,10 +58,10 @@ const homelist = (req, res) => {
         ]
     });
     };
-    /* GET 'Location info' page */
-    const locationInfo = (req, res) => {
-        res.render('location-info', {
-            title: 'Location info',
+    /* GET 'Product info' page */
+    const productInfo = (req, res) => {
+        res.render('product-info', {
+            title: 'Product info',
             product: {
                 name: 'Dog Food',
                 company: 'Pedigree',
@@ -100,7 +100,7 @@ const homelist = (req, res) => {
     };
     /* GET 'Add review' page */
     const addReview = (req, res) => {
-        res.render('location-review-form', {
+        res.render('product-review-form', {
             title: 'Add review',
             product: 'Pedigree'
         });
@@ -108,6 +108,6 @@ const homelist = (req, res) => {
     
     module.exports = {
     homelist,
-    locationInfo,
+    productInfo,
     addReview
     };
