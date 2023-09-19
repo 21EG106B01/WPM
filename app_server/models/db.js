@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 const readLine = require('readline');
 
 let dbURL = 'mongodb://127.0.0.1/PetNeeds';
-if (process.env.NODE_ENV === 'production') {
-    dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
 }
 
 const connect = () => {
@@ -55,5 +62,14 @@ process.on('SIGTERM', () => {
     });
 });
 
-connect();
+if (process.env.NODE_ENV === 'production') {
+    connectDB().then(() => {
+        app.listen(PORT, () => {
+            console.log("listening for requests");
+        })
+    })
+}
+else {
+    connect();
+}
 require('./products');

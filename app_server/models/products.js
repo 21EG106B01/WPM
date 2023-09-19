@@ -1,14 +1,25 @@
 const mongoose = require('mongoose');
 
-const openingTimesSchema = new mongoose.Schema({
-    days: {
+const companyDescSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    opening: String,
-    closing: String,
-    closed: {
-        type: Boolean,
+    desc: String,
+    coords: {
+        type: { type: String },
+        index: [Number]
+    },
+    address: String
+});
+
+const prodVariationSchema = new mongoose.Schema({
+    variation: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
         required: true
     }
 });
@@ -33,22 +44,20 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: String,
+    smalDesc: String,
+    prodDesc: String,
     rating: {
         type: Number,
         'default': 0,
         min: 1,
         max: 5
     },
-    facilities: [String],
-    coords: {
-        type: { type: String },
-        index: [Number]
-    },
-    openingTimes: [openingTimesSchema],
+    tags: [String],
+    company: companyDescSchema,
+    prodvar: [prodVariationSchema],
     reviews: [reviewSchema]
 });
 
-productSchema.index({ coords: '2dsphere' });
+companyDescSchema.index({ coords: '2dsphere' });
 
 mongoose.model('Product', productSchema);
