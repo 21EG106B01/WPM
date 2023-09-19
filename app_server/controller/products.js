@@ -1,3 +1,11 @@
+const request = require('request');
+const apiOptions = {
+    server: "http://localhost:3000"
+};
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = 'https://petneedstore.cyclic.app';
+}
+
 const homelist = (req, res) => {
     res.render('products-list', {
         title: 'PetNeeds - For all your pets needs',
