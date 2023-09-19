@@ -106,8 +106,8 @@ const homelist = (req, res) => {
         });
     };
     
-    module.exports = {
+module.exports = {
     homelist,
     productInfo,
     addReview
-    };
+};

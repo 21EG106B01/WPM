@@ -6,7 +6,7 @@ let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log('MongoDB Connected: ${conn.connection.host}');
+        console.log('MongoDB Connected: ' + process.env.MONGO_URI);
     } catch (error) {
         console.log('Error: ' + error);
         process.exit(1);
@@ -18,16 +18,16 @@ const connect = () => {
 }
 
 mongoose.connection.on('connected', () => {
-    console.log('connected');
+    console.log('Mongoose connected to ' + dbURL);
 });
 
 mongoose.connection.on('error', err => {
-    console.log('error: ' + err);
+    console.log('Error: ' + err);
     return connect();
 });
 
 mongoose.connection.on('disconnected', () => {
-    console.log('disconnected');
+    console.log('Disconnected');
 });
 
 if (process.platform === 'win32') {
@@ -40,10 +40,12 @@ if (process.platform === 'win32') {
     });
 }
 
-const gracefulShutdown = (msg) => {
-    mongoose.connection.close(() => {
-        console.log(`Mongoose disconnected through ${msg}`);
-    });
+async function gracefulShutdown(msg) {
+    const closed = await mongoose.connection.close()
+        .then(function () {
+            console.log(`Mongoose disconnected through ${msg}`);
+            process.exit();
+        });
 };
 
 process.once('SIGUSR2', () => {

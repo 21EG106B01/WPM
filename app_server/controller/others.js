@@ -7,7 +7,8 @@ const about = (req, res) => {
                  'Kotha Siri (21EG106B55)',
                  'Manichandra (21EG106B59)']
     });
-    };
-    module.exports = {
+};
+
+module.exports = {
     about
-    };
+};

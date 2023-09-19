@@ -6,10 +6,6 @@ const companyDescSchema = new mongoose.Schema({
         required: true
     },
     desc: String,
-    coords: {
-        type: { type: String },
-        index: [Number]
-    },
     address: String
 });
 
@@ -49,15 +45,13 @@ const productSchema = new mongoose.Schema({
     rating: {
         type: Number,
         'default': 0,
-        min: 1,
+        min: 0,
         max: 5
     },
     tags: [String],
     company: companyDescSchema,
-    prodvar: [prodVariationSchema],
+    prodVar: [prodVariationSchema],
     reviews: [reviewSchema]
 });
-
-companyDescSchema.index({ coords: '2dsphere' });
 
 mongoose.model('Product', productSchema);
