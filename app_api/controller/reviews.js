@@ -53,7 +53,7 @@ async function reviewsUpdateOne(req, res) {
                     thisReview.rating = req.body.rating;
                     thisReview.reviewText = req.body.reviewText;
                     try {
-                        await product.save(product)
+                        product.save(product)
                             .then(function (product) {
                                 updateAvgRating(product._id);
                                 res.status(200).json(thisReview);
@@ -77,7 +77,7 @@ async function reviewsDeleteOne(req, res) {
                     if (!product.reviews.id(reviewid)) {
                         return res.status(404).json({ "message": "Review Not Found" });
                     } else {
-                        await product.reviews.id(reviewid).remove()
+                        product.reviews.id(reviewid).remove()
                             .then(function () {
                                 updateAvgRating(product._id);
                                 res.status(204).json(null);
@@ -104,11 +104,12 @@ async function doAddReview(req, res, product) {
             reviewText
         })
         try {
-            product.save(product){
+            product.save(product)
+            .then(function(product){
                 updateAvgRating(product._id);
                 const thisReview = product.reviews.slice(-1).pop();
                 res.status(201).json(thisReview);
-            };
+            });
         } catch (err) {
             res.status(400).json(err);
         }

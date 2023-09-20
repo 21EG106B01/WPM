@@ -71,7 +71,7 @@ async function productsUpdateOne (req, res) {
                 }];
             });
         try {
-            await product.save(prod)
+            product.save(prod)
                 .then(res.status(200).json(loc));
         } catch (err) {
             res.status(404).json(err);
