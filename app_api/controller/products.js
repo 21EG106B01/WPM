@@ -37,7 +37,7 @@ async function productsReadOne(req, res) {
     try {
         const prodId = await Prod.findById(req.params.productid)
             .then(function (product) {
-                res
+                return res
                     .status(200)
                     .json(product);
             });

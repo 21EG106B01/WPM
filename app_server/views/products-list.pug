@@ -2,7 +2,6 @@ extends layout
 include _includes/sharedHTMLfunctions
 
 block content
-
 	.row.banner
 		.col-12
 			h1 #{pageHeader.title}
@@ -18,7 +17,7 @@ block content
 								img.prod-img(src= product.imgSrc)
 							.prod-content
 								h4
-									a(href="/product")= product.name
+									a(href=`/product?product=${product.prnum}`) #{product.name}
 									span.badge.badge-pill.badge-default.float-right= product.price
 									<br>
 									small= product.company
@@ -28,7 +27,6 @@ block content
 								each tag in product.tags
 									| &nbsp;
 									span.badge.badge-warning= tag
-
 
 		.col-md-12.col-lg-3
 			p.lead= sidebar 

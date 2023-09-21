@@ -15,61 +15,68 @@ const homelist = (req, res) => {
         },
         sidebar: 'Looking for grooming products for your pets? PetNeeds helps you find the best qulity products for your pets. Perhaps a brush or food? Let PetNeeds help you find the products you are looking for.',
         products: [{
-                name: 'Dog Food',
-                company: 'Pedigree',
-                rating: 3,
-                smalDesc: 'Pedigree high quality dog food',
-                tags: ['Dog', 'Food', 'Medium'],
-                price: 'INR 500',
-                imgSrc: '/resources/pedigree.jpeg'
-            }, {
-                name: 'Kennel',
-                company: 'MidWest',
-                rating: 4,
-                smalDesc: 'Small kennel for animal transport',
-                tags: ['Any Animal', 'Shelter', 'Small'],
-                price: 'INR 2400',
-                imgSrc: '/resources/kennel.jpeg'
-            }, {
-                name: 'Dog Brush',
-                company: 'QPets',
-                rating: 5,
-                smalDesc: 'A dog brush for rough hair',
-                tags: ['Dog', 'Brush', 'Rough'],
-                price: 'INR 450',
-                imgSrc: '/resources/dogbrush.jpeg'
-            }, {
-                name: 'Cat Food',
-                company: 'Whiskas',
-                rating: 2,
-                smalDesc: 'Cat Food for adult cats',
-                tags: ['Cat', 'Food', 'Adult'],
-                price: 'INR 250',
-                imgSrc: '/resources/whiskas.jpeg'
-            }, {
-                name: 'Aquarium',
-                company: 'QPets',
-                rating: 4,
-                smalDesc: 'Medium sized aquarium',
-                tags: ['Fish', 'Shelter', '20ltr'],
-                price: 'INR 3050',
-                imgSrc: '/resources/aquarium.jpeg'
-            }, {
-                name: 'Rabbit Cage',
-                company: 'MidWest',
-                rating: 3,
-                smalDesc: 'Small sized cage for rabbits',
-                tags: ['Rabbit', 'Shelter', 'Small'],
-                price: 'INR 2050',
-                imgSrc: '/resources/rabbitcage.jpeg'
-            }
-        ]
+            name: 'Dog Food',
+            company: 'Pedigree',
+            rating: 3,
+            smalDesc: 'Pedigree high quality dog food',
+            tags: ['Dog', 'Food', 'Medium'],
+            price: 'INR 500',
+            imgSrc: '/resources/Pedigree.jpeg',
+            prnum: 0
+        }, {
+            name: 'Kennel',
+            company: 'MidWest',
+            rating: 4,
+            smalDesc: 'Small kennel for animal transport',
+            tags: ['Any Animal', 'Shelter', 'Small'],
+            price: 'INR 2400',
+            imgSrc: '/resources/Kennel.jpeg',
+            prnum: 1
+        }, {
+            name: 'Dog Brush',
+            company: 'QPets',
+            rating: 5,
+            smalDesc: 'A dog brush for rough hair',
+            tags: ['Dog', 'Brush', 'Rough'],
+            price: 'INR 450',
+            imgSrc: '/resources/Dogbrush.jpeg',
+            prnum: 2
+        }, {
+            name: 'Cat Food',
+            company: 'Whiskas',
+            rating: 2,
+            smalDesc: 'Cat Food for adult cats',
+            tags: ['Cat', 'Food', 'Adult'],
+            price: 'INR 250',
+            imgSrc: '/resources/Whiskas.jpeg',
+            prnum: 3
+        }, {
+            name: 'Aquarium',
+            company: 'QPets',
+            rating: 4,
+            smalDesc: 'Medium sized aquarium',
+            tags: ['Fish', 'Shelter', '20ltr'],
+            price: 'INR 3050',
+            imgSrc: '/resources/Aquarium.jpeg',
+            prnum: 4
+        }, {
+            name: 'Rabbit Cage',
+            company: 'MidWest',
+            rating: 3,
+            smalDesc: 'Small sized cage for rabbits',
+            tags: ['Rabbit', 'Shelter', 'Small'],
+            price: 'INR 2050',
+            imgSrc: '/resources/Rabbitcage.jpeg',
+            prnum: 5
+            }]
     });
-    };
-    /* GET 'Product info' page */
-    const productInfo = (req, res) => {
-        res.render('product-info', {
-            title: 'Product info',
+};
+/* GET 'Product info' page */
+const productInfo = (req, res) => {
+    res.render('product-info', {
+        title: 'Product info',
+        prnum: req.query.product,
+        prpage: [{
             product: {
                 name: 'Dog Food',
                 company: 'Pedigree',
@@ -78,7 +85,7 @@ const homelist = (req, res) => {
                 smalDesc: 'Pedigree high quality dog food',
                 tags: ['Dog', 'Food', 'Medium'],
                 desc: 'PEDIGREE Professional Range adult dog food fulfills the special needs of your dog. The range provides expert nutrition combining high-quality ingredients with the science developed by our veterinarians and nutritionists.',
-                quantity: [{
+                variation: [{
                     qty: '500GM',
                     price: '260 RS'
                 }, {
@@ -104,15 +111,192 @@ const homelist = (req, res) => {
                 lead: 'Pedigree offers the best & affordable dog food in India. Explore the nutritionally balanced dog food & learn how to take care of dogs.',
                 last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
             }
-        });
-    };
-    /* GET 'Add review' page */
-    const addReview = (req, res) => {
-        res.render('product-review-form', {
-            title: 'Add review',
-            product: 'Pedigree'
-        });
-    };
+        }, {
+            product: {
+                name: 'Kennel',
+                company: 'PetMate',
+                imgSrc: '/resources/Kennel.jpeg',
+                rating: 4,
+                smalDesc: 'Small kennel for animal transport',
+                tags: ['Any Animal', 'Shelter', 'Small'],
+                desc: 'The Petmate Ultra Vari Kennel is easy-to-assembly with no tools required. \n' +
+      'Features: Tough durable construction with easy-open squeeze latch Wire vents on side walls Interior moat to keep pets dry and tie-down strap holes.',
+                variation: [{
+                    qty: '21 Inch',
+                    price: '8000'
+                }, {
+                    qty: '32 Inch',
+                    price: '14000'
+                }]
+            },
+            reviews: [{
+                author: 'Rahul',
+                rating: 4,
+                date: '18 June 2018',
+                content: 'Easy to carry and move.'
+            },
+            {
+                author: 'Risheeth',
+                rating: 3,
+                date: '23 January 2016',
+                content: 'The lock gets stuck sometimes'
+            }],
+            sidebar: {
+                lead: 'At Petmate we’re passionate about delivering peace of mind to pet owners with quality products. Shop Petmate online for pet supplies, kennels, bedding and more.',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
+            }, {
+            product: {
+                name: 'Dog Brush',
+                company: 'Evolution',
+                imgSrc: '/resources/Dogbrush.jpeg',
+                rating: 5,
+                smalDesc: 'A dog brush for rough hair',
+                tags: ['Any Animal', 'Shelter', 'Small'],
+                desc: 'The Evolution self-cleaning dog brush saves you valuable cleaning time. At the touch of a button, the hairpins retract and hair falls out. Put the button back and you are ready to start again.',
+                variation: [{
+                    qty: 'Black',
+                    price: '900'
+                }, {
+                    qty: 'White',
+                    price: '910'
+                }]
+            },
+            reviews: [{
+                author: 'Abhay Mishra',
+                rating: 2,
+                date: '06 February 2020',
+                content: 'Doesnt comb properly. Returning the product.'
+            },
+            {
+                author: 'Datha Prasad',
+                rating: 5,
+                date: '14 January 2019',
+                content: 'Cleans out all the hair. Very good product'
+            },
+            {
+                author: 'Shreya',
+                rating: 5,
+                date: '19 May 2019',
+                content: 'Hard to get hair out of the brush.'
+            },
+            {
+                author: 'Vishwas',
+                rating: 1,
+                date: '20 April 2019',
+                content: 'Not good enough'
+            }],
+            sidebar: {
+                lead: 'Pet Evolution uses only the highest quality, all-natural products. Our certified groomers specialize in breed specific grooming and stay current on new techniques and styles.',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
+            }, {
+            product: {
+                name: 'Cat Food',
+                company: 'Whiskas',
+                imgSrc: '/resources/Whiskas.jpeg',
+                rating: 2,
+                smalDesc: 'Cat Food for adult cats',
+                tags: ['Cat', 'Food', 'Adult'],
+                    desc: 'Our WHISKAS food for cats tastes great and contains all of the nutrients, vitamins, and minerals your cat needs to make the most of the day!',
+                variation: [{
+                    qty: '500gm',
+                    price: '600'
+                }, {
+                    qty: '1KG',
+                    price: '1010'
+                }]
+            },
+            reviews: [{
+                author: 'Snehal',
+                rating: 4,
+                date: '02 February 2023',
+                content: 'Good for cats'
+            },
+            {
+                author: 'Ajay',
+                rating: 2,
+                date: '10 July 2019',
+                content: 'Not their favorite'
+            }],
+            sidebar: {
+                lead: 'Not only do you love your cats independent spirit, but you also want to give them the best possible care. Whiskas range offers delicious meals specially formulated to give your cat the diet they need, at the age they need it: up to 12 months old to one year plus!',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
+            }, {
+            product: {
+                name: 'Aquarium',
+                company: 'QPets',
+                imgSrc: '/resources/Aquarium.jpeg',
+                rating: 4,
+                smalDesc: 'Medium sized aquarium',
+                tags: ['Fish', 'Shelter', 'Rectangle'],
+                desc: 'This 5 gallon desktop aquarium can be interesting and project an effective aquascape philosophy when executed properly.',
+                variation: [{
+                    qty: '10 Liter',
+                    price: '5000'
+                }, {
+                    qty: '20 Liter',
+                    price: '9010'
+                }]
+            },
+            reviews: [{
+                author: 'Snehal',
+                rating: 4,
+                date: '02 February 2023',
+                content: 'Good for fishes'
+            },
+            {
+                author: 'Ajay',
+                rating: 2,
+                date: '10 July 2019',
+                content: 'Not their favorite'
+            }],
+            sidebar: {
+                lead: 'Dedicated to bringing the cutest pet products, Qpets is a brand with an inventory full of items that will make yours and your little friends lives hassle-free, entertaining & fun.',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
+            }, {
+            product: {
+                name: 'Rabbit Cage',
+                company: 'Midwest',
+                imgSrc: '/resources/Rabbitcage.jpeg',
+                rating: 3,
+                smalDesc: 'Small sized cage for rabbits',
+                tags: ['Rabbit', 'Shelter', 'Small'],
+                desc: 'RABBIT CAGE MAT: The mat for rabbit cage is designed for ensuring that any stray food, urine, or feces that can fall through the mat effectively so as to keep the area where rabbit stands clean and dry. This rabbit cage mat helps maintain cleanliness and hygiene in your rabbits living space, leaving the dry and sanitary.',
+                variation: [{
+                    qty: 'Small',
+                    price: '5000'
+                }]
+            },
+            reviews: [{
+                author: 'Snehal',
+                rating: 4,
+                date: '02 February 2023',
+                content: 'Good for rabbits'
+            },
+            {
+                author: 'Ajay',
+                rating: 2,
+                date: '10 July 2019',
+                content: 'Not their favorite'
+            }],
+            sidebar: {
+                lead: 'As pet lovers, we at Midwest know that your pet is part of the family. Keeping your pet comfortable and safe is important to you and it is important to us.',
+                last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
+            }
+            }]
+    });
+};
+
+/* GET 'Add review' page */
+const addReview = (req, res) => {
+    res.render('product-review-form', {
+        title: 'Add review',
+        product: 'Pedigree'
+    });
+};
     
 module.exports = {
     homelist,

@@ -11,10 +11,7 @@ var apiRouter = require('./app_api/routes/index');
 var index = require('./app_server/routes/index');
 var users = require('./app_server/routes/users');
 
-
 var app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
