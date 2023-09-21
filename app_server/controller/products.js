@@ -21,7 +21,7 @@ const homelist = (req, res) => {
             smalDesc: 'Pedigree high quality dog food',
             tags: ['Dog', 'Food', 'Medium'],
             price: 'INR 500',
-            imgSrc: '/resources/Pedigree.jpeg',
+            imgSrc: '/resources/pedigree.jpeg',
             prnum: 0
         }, {
             name: 'Kennel',
@@ -30,7 +30,7 @@ const homelist = (req, res) => {
             smalDesc: 'Small kennel for animal transport',
             tags: ['Any Animal', 'Shelter', 'Small'],
             price: 'INR 2400',
-            imgSrc: '/resources/Kennel.jpeg',
+            imgSrc: '/resources/kennel.jpeg',
             prnum: 1
         }, {
             name: 'Dog Brush',
@@ -39,7 +39,7 @@ const homelist = (req, res) => {
             smalDesc: 'A dog brush for rough hair',
             tags: ['Dog', 'Brush', 'Rough'],
             price: 'INR 450',
-            imgSrc: '/resources/Dogbrush.jpeg',
+            imgSrc: '/resources/dogbrush.jpeg',
             prnum: 2
         }, {
             name: 'Cat Food',
@@ -48,7 +48,7 @@ const homelist = (req, res) => {
             smalDesc: 'Cat Food for adult cats',
             tags: ['Cat', 'Food', 'Adult'],
             price: 'INR 250',
-            imgSrc: '/resources/Whiskas.jpeg',
+            imgSrc: '/resources/whiskas.jpeg',
             prnum: 3
         }, {
             name: 'Aquarium',
@@ -57,7 +57,7 @@ const homelist = (req, res) => {
             smalDesc: 'Medium sized aquarium',
             tags: ['Fish', 'Shelter', '20ltr'],
             price: 'INR 3050',
-            imgSrc: '/resources/Aquarium.jpeg',
+            imgSrc: '/resources/aquarium.jpeg',
             prnum: 4
         }, {
             name: 'Rabbit Cage',
@@ -66,7 +66,7 @@ const homelist = (req, res) => {
             smalDesc: 'Small sized cage for rabbits',
             tags: ['Rabbit', 'Shelter', 'Small'],
             price: 'INR 2050',
-            imgSrc: '/resources/Rabbitcage.jpeg',
+            imgSrc: '/resources/rabbitcage.jpeg',
             prnum: 5
             }]
     });
