@@ -7,8 +7,7 @@
     "\\app_api\\routes",
     "\\app_server",
     "\\app_server\\controller",
-    "\\app_server\\routes",
-    "\\public\\stylesheets"
+    "\\app_server\\routes"
   ],
   "SelectedNode": "\\app_server\\routes\\index.js",
   "PreviewInSolutionExplorer": false
