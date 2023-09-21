@@ -6,8 +6,10 @@
     "\\app_api\\models",
     "\\app_api\\routes",
     "\\app_server",
-    "\\app_server\\controller"
+    "\\app_server\\controller",
+    "\\app_server\\routes",
+    "\\public\\stylesheets"
   ],
-  "SelectedNode": "\\app_server\\controller\\products.js",
+  "SelectedNode": "\\app_server\\routes\\index.js",
   "PreviewInSolutionExplorer": false
 }
