@@ -115,7 +115,7 @@ const productInfo = (req, res) => {
             product: {
                 name: 'Kennel',
                 company: 'PetMate',
-                imgSrc: '/resources/Kennel.jpeg',
+                imgSrc: '/resources/kennel.jpeg',
                 rating: 4,
                 smalDesc: 'Small kennel for animal transport',
                 tags: ['Any Animal', 'Shelter', 'Small'],
@@ -149,7 +149,7 @@ const productInfo = (req, res) => {
             product: {
                 name: 'Dog Brush',
                 company: 'Evolution',
-                imgSrc: '/resources/Dogbrush.jpeg',
+                imgSrc: '/resources/dogbrush.jpeg',
                 rating: 5,
                 smalDesc: 'A dog brush for rough hair',
                 tags: ['Any Animal', 'Shelter', 'Small'],
@@ -194,7 +194,7 @@ const productInfo = (req, res) => {
             product: {
                 name: 'Cat Food',
                 company: 'Whiskas',
-                imgSrc: '/resources/Whiskas.jpeg',
+                imgSrc: '/resources/whiskas.jpeg',
                 rating: 2,
                 smalDesc: 'Cat Food for adult cats',
                 tags: ['Cat', 'Food', 'Adult'],
@@ -227,7 +227,7 @@ const productInfo = (req, res) => {
             product: {
                 name: 'Aquarium',
                 company: 'QPets',
-                imgSrc: '/resources/Aquarium.jpeg',
+                imgSrc: '/resources/aquarium.jpeg',
                 rating: 4,
                 smalDesc: 'Medium sized aquarium',
                 tags: ['Fish', 'Shelter', 'Rectangle'],
@@ -260,7 +260,7 @@ const productInfo = (req, res) => {
             product: {
                 name: 'Rabbit Cage',
                 company: 'Midwest',
-                imgSrc: '/resources/Rabbitcage.jpeg',
+                imgSrc: '/resources/rabbitcage.jpeg',
                 rating: 3,
                 smalDesc: 'Small sized cage for rabbits',
                 tags: ['Rabbit', 'Shelter', 'Small'],
