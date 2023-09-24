@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
+const express = require('express');
 const readLine = require('readline');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 

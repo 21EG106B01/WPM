@@ -28,12 +28,8 @@ legend {
     padding: 1rem;
 }
 
-.card-block.prod-card {
-    display: block;
-}
-
 .card-primary {
-    border-color: rgba(235, 235, 255, 0.3);
+    border-color: rgba(0, 20, 25, 0.3);
     margin-bottom: 0.5rem;
 }
 
@@ -45,7 +41,8 @@ legend {
 }
 
 .review-header {
-    background-color: rgba(0, 0, 20, 0.3);
+    background-color: rgba(0, 0, 20, 1);
+    color: #eee;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: 0.5em;
@@ -97,6 +94,10 @@ p {
     margin-bottom: 0.65rem;
 }
 
+.card-block.prod-card {
+    display: block;
+}
+
 .prod-card:hover {
     background: rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -141,16 +142,19 @@ p {
 
 .qty {
     padding: 5px;
+    width:100%;
 }
 
 .qty:hover {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 20, 25, 0.2);
     transition: .5s;
+
 }
 
 .buybtn{
-    background: #eed;
+    background: #fff;
+    border: 2px solid #223;
     color: #222;
 }
 
@@ -161,7 +165,7 @@ p {
 
 .buybtn, .addcartbtn{
     border-radius: 3px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 20, 25, 0.3);
     margin: 5px;
     cursor: pointer;
 }
