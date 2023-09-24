@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const readLine = require('readline');
+const bodyparser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(bodyparser.json())
 
 let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 
