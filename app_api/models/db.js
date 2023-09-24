@@ -1,19 +1,16 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const readLine = require('readline');
-const bodyparser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-app.use(bodyparser.json())
 
 let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log('MongoDB Connected: ' + process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
         console.log('Error: ' + error);
         process.exit(1);
@@ -72,13 +69,15 @@ process.on('SIGTERM', () => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-    connectDB().then(() => {
-        app.listen(PORT, () => {
-            console.log("listening for requests");
-        })
-    })
+    connectDB();
 }
 else {
     connect();
 }
 require('./products');
+
+//.then(() => {
+//app.listen(PORT, () => {
+//    console.log("listening for requests");
+//});
+ //   })
