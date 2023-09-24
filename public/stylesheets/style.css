@@ -1,11 +1,17 @@
 @import url("//fonts.googleapis.com/css?family=Kanit|Cabin:400,700");
 
+body {
+    font-family: "Cabin", Arial, sans-serif;
+    color: #112;
+    background-color: #fef;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Kanit', cursive;
 }
 
 a:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 legend {
@@ -13,48 +19,33 @@ legend {
 }
 
 .navbar {
-    background-color: #ad1d28;
-    border-color: #911821;
-}
-
-.navbar-dark .navbar-brand {
-    font-family: 'Kanit', cursive;
-    color: #fff;
-}
-
-.navbar-dark .navbar-toggler {
-    color: white;
-    border-color: white;
-}
-
-.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
-    color: white;
+    background-color: rgba(0,0,0,0.8);
+    border-bottom: 4px solid rgba(50,150,255,0.8);
 }
 
 .card {
-    background-color: #28a745;
+    background-color: rgba(235, 235, 255, 0.1);
     padding: 1rem;
 }
 
 .card-block.prod-card {
-    position: relative;
-    height: 300pt;
+    display: block;
 }
 
 .card-primary {
-    border-color: #38b755;
+    border-color: rgba(235, 235, 255, 0.3);
     margin-bottom: 0.5rem;
 }
 
 .banner {
     margin-top: 4em;
-    border-bottom: 1px solid #28a745;
+    border-bottom: 1px solid rgba(245, 245, 255, 0.2);
     margin-bottom: 1.5em;
     padding-bottom: 0.5em;
 }
 
 .review-header {
-    background-color: #10872a;
+    background-color: rgba(0, 0, 20, 0.3);
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: 0.5em;
@@ -66,6 +57,10 @@ legend {
     margin-bottom: 0.5em;
 }
 
+.reviewTimestamp {
+    float: right;
+}
+
 .badge-default, .btn-primary {
     background-color: #ad1d28;
     border-color: #911821;
@@ -75,26 +70,8 @@ legend {
     cursor: pointer;
 }
 
-.btn-primary:hover {
-    background: #40c76a;
-    border-color: #40b75a;
-}
-
-.btn-primary:active {
-    background: #189735 !important;
-    border-color: #38b755 !important;
-}
-
-.btn-primary:focus {
-    box-shadow: 0 0 0 0.2rem rgba(69, 217, 104, 0.5) !important;
-}
-
-.btn-primary:active:focus {
-    box-shadow: 0 0 0 0.2rem rgba(69, 217, 104, 0.5) !important;
-}
-
 h4 a, h4 a:hover {
-    color: #fff;
+    color: rgba(0, 0, 20, 0.8);
 }
 
 h4 small {
@@ -105,55 +82,57 @@ h4 small {
 }
 
 h4{
-    margin: 0;
+    margin: 0 !important;
+}
+
+h2 {
+    margin-bottom: 10px;
 }
 
 h1 small {
-    color: #aaa;
-}
-
-.facilities span.badge {
-    margin-right: 2px;
+    color: #444;
 }
 
 p {
     margin-bottom: 0.65rem;
 }
 
-a {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-body {
-    font-family: "Cabin", Arial, sans-serif;
-    color: #fff;
-    background-color: #1e7e34;
+.prod-card:hover {
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .prod-desc {
     margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.img-container {
+    height: 65%;
 }
 
 .prod-img {
-    max-width: 100%;
-    height: 100%;
+    max-width: 6cm;
+    max-height: 6cm;
     padding: 5px;
 }
 
-.prod-content {
-    position: absolute;
-    bottom: 0;
-    background: rgba(40, 167, 69, 0.5);
-    width: 100%;
+.prod-content a{
+    color: black;
 }
 
 .logo {
-    height: 100px;
+    height: 80px;
     overflow: hidden;
     padding-left: 50px;
 }
 .logo img {
     margin-top: -100px;
+    padding: 10px;
+    background: black;
+    border-radius: 10px;
 }
 
 .qprice {
@@ -185,4 +164,14 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
     margin: 5px;
     cursor: pointer;
+}
+
+.prod-desc-input label, .prod-var-input label, .prod-comp-input label {
+    width: 30%;
+    vertical-align: top;
+    margin-bottom: 20px;
+}
+
+hr{
+    background: white;
 }

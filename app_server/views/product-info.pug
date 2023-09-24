@@ -4,10 +4,8 @@ include _includes/sharedHTMLfunctions
 block content
 	.row.banner
 		.col-12
-			h1= prpage[prnum].product.company
-				prnum
-				small &nbsp;
-					#{prpage[prnum].product.name}
+			h1= product.name
+				small &nbsp; #{product.company.name}
 	.row
 		.col-12.col-lg-9
 			.row
@@ -15,11 +13,11 @@ block content
 					.card.card-primary
 						.card-block
 							h2.card-title Product Images
-							img.img-fluid.rounded(src= prpage[prnum].product.imgSrc)
+							img.img-fluid.rounded(src= product.imgSrc)
 					p.rating
-						+outRating(prpage[prnum].product.rating)
-					p= prpage[prnum].product.smalDesc
-					each tag in prpage[prnum].product.tags
+						+outRating(product.rating)
+					p= product.smalDesc
+					each tag in product.tags
 						| &nbsp;
 						span.badge.badge-warning= tag
 					| <br>
@@ -29,12 +27,12 @@ block content
 					.card.card-primary
 						.card-block
 							h2.card-title Product Description
-							p.card-text= prpage[prnum].product.desc
+							p.card-text= product.prodDesc
 					.card.card-primary
 						.card-block
 							h2.card-title Variety
-							each pack in prpage[prnum].product.variation
-								p.card-text.qty= pack.qty
+							each pack in product.prodVar
+								p.card-text.qty= pack.variation
 									span.qprice= pack.price
 
 			.row
@@ -43,18 +41,19 @@ block content
 						.card-block
 							a.btn.btn-primary.float-right(href='/product/review/new') Add review
 							h2.card-title Customer reviews
-							each review in prpage[prnum].reviews
+							each review in product.reviews
 								.row.review
 									.col-12.no-gutters.review-header
 										span.rating
 											+outRating(review.rating)
-											| &nbsp;
+											| &nbsp; &nbsp;
 										span.reviewAuthor=  review.author
-										| &nbsp;
-										small.reviewTimestamp=  review.date
+										| &nbsp; &nbsp;
+										small.reviewTimestamp
+											+formatDate(review.timestamp)
 									.col-12
-										p= review.content
+										p= review.reviewText
 
 		.col-12.col-lg-3
-			p.lead= prpage[prnum].sidebar.lead
-			p= prpage[prnum].sidebar.last
+			p.lead= product.company.desc
+			p= sidebar.last

@@ -1,7 +1,19 @@
 const mongoose = require('mongoose');
 const Prod = mongoose.model('Product');
+const express = require('express');
 
-async function productsListByPrice (req, res) { };
+express().use(express.urlencoded({ extended: true }));
+
+async function productsAll(req, res) {
+    try {
+        const data = await Prod.find({})
+            .then(function (products) {
+                res.status(200).json(products);
+            })
+    } catch (err) {
+        res.status(404).json(err);
+    }
+};
 async function productsCreate (req, res) {
     try {
         const prod = await Prod.create({
@@ -9,12 +21,16 @@ async function productsCreate (req, res) {
             smalDesc: req.body.smalDesc,
             prodDesc: req.body.prodDesc,
             tags: req.body.tags.split(','),
+            imgSrc: `/resources/${req.body.name}.jpeg`,
             prodVar: [{
                 variation: req.body.variation1,
                 price: req.body.price1
             }, {
                 variation: req.body.variation2,
                 price: req.body.price2
+            }, {
+                variation: req.body.variation3,
+                price: req.body.price3
             }],
             company: {
                 name: req.body.cname,
@@ -37,7 +53,7 @@ async function productsReadOne(req, res) {
     try {
         const prodId = await Prod.findById(req.params.productid)
             .then(function (product) {
-                return res
+                res
                     .status(200)
                     .json(product);
             });
@@ -89,7 +105,7 @@ async function productsDeleteOne (req, res) {
                     res.status(204).json(null);
                 });
         } else {
-            res.status(404).json({ "message": "No Location" });
+            res.status(404).json({ "message": "No Product" });
         }
     } catch (err) {
         return res.status(404).json(err);
@@ -97,7 +113,7 @@ async function productsDeleteOne (req, res) {
 };
 
 module.exports = {
-    productsListByPrice,
+    productsAll,
     productsCreate,
     productsReadOne,
     productsUpdateOne,

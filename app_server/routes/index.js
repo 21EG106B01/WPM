@@ -6,8 +6,9 @@ const ctrlOthers = require('../controller/others');
 
 
 router.get('/', ctrlProducts.homelist);
-router.get('/product', ctrlProducts.productInfo);
+router.get('/product/:productid', ctrlProducts.productInfo);
 router.get('/product/review/new', ctrlProducts.addReview);
+router.get('/product/new', ctrlProducts.addProduct);
 
 router.get('/about', ctrlOthers.about);
 

@@ -10,14 +10,8 @@ const companyDescSchema = new mongoose.Schema({
 });
 
 const prodVariationSchema = new mongoose.Schema({
-    variation: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    }
+    variation: String,
+    price: Number
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -40,6 +34,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    imgSrc: String,
     smalDesc: String,
     prodDesc: String,
     rating: {

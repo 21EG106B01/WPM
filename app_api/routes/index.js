@@ -6,7 +6,7 @@ const ctrlReviews = require('../controller/reviews');
 // products
 router
     .route('/products')
-    .get(ctrlProducts.productsListByPrice)
+    .get(ctrlProducts.productsAll)
     .post(ctrlProducts.productsCreate);
 router
     .route('/products/:productid')
