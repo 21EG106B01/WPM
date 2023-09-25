@@ -12,6 +12,7 @@ router
     .route('/product/:productid/review/new')
     .get(ctrlProducts.addReview)
     .post(ctrlProducts.doAddReview);
+router.get('/product/:productid/buy', ctrlProducts.buyProduct);
 
 router.get('/about', ctrlOthers.about);
 

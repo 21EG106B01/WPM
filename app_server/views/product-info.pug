@@ -21,8 +21,8 @@ block content
 						| &nbsp;
 						span.badge.badge-warning= tag
 					| <br>
-					button.buybtn Buy Now
-					button.addcartbtn Add to Cart
+					button.btn.btn-outline-dark(onclick=`location.href="/product/${productid}/buy"`) Buy Now
+					button.btn.btn-danger Add to Cart
 				.col-12.col-md-6
 					.card.card-primary
 						.card-block

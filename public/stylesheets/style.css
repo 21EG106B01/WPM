@@ -78,7 +78,7 @@ h4 a, h4 a:hover {
 h4 small {
     font-size: 60%;
     max-height: 50%;
-    color: #bbb;
+    color: #888;
     margin: 0;
 }
 
@@ -193,4 +193,13 @@ p {
 
 hr{
     background: white;
+}
+
+.pay-btn {
+    gap: 10px;
+    margin: 10px auto;
+}
+
+.btn {
+    margin: 5px;
 }

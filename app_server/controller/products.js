@@ -21,6 +21,7 @@ const renderHomepage = (req, res, responseBody) => {
 const renderDetailPage = (req, res, product) => {
     res.render('product-info', {
         title: `${product.name}`,
+        productid: product._id,
         product,
         sidebar: {
             last: 'If you have bought and liked it - or if you dont - please leave a review to help other people just like you.'
@@ -39,6 +40,20 @@ const renderReviewForm = (req, res, body) => {
         error: req.query.err
     });
 };
+
+const renderBuyProduct = (req, res, body) => {
+    res.render('buy-product', {
+        title: `${body.name}`,
+        imgSrc: `${body.imgSrc}`,
+        pageHeader: {
+            title: `${body.name} - ${body.company.name}`
+        },
+        variation: `${body.prodVar[0].variation}`,
+        price: `${body.prodVar[0].price}`,
+        caddress: `${body.company.address}`,
+        productid: body._id
+    })
+}
 
 const showError = (req, res, status) => {
     let title = '';
@@ -141,6 +156,12 @@ const addProduct = (req, res) => {
     });
 };
 
+const buyProduct = (req, res) => {
+    getProductInfo(req, res,
+        (req, res, responseData) => renderBuyProduct(req, res, responseData)
+    );
+};
+
 /* GET 'Add review' page */
 const addReview = (req, res) => {
     getProductInfo(req, res,
@@ -153,5 +174,6 @@ module.exports = {
     productInfo,
     addProduct,
     addReview,
-    doAddReview
+    doAddReview,
+    buyProduct
 };
