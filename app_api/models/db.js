@@ -5,25 +5,24 @@ const readLine = require('readline');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let dbURL = 'mongodb://127.0.0.1/PetNeeds';
+let dbURL = 'mongodb://127.0.0.0.1/PetNeeds';
 
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
+        console.log(`MongoDB Connected Online: ${conn.connection.host}`);
     } catch (error) {
         console.log('Error: ' + error);
         process.exit(1);
     }
-}
+};
 
 const connect = () => {
     setTimeout(() => mongoose.connect(dbURL), 1000);
-}
-
-mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected to ' + dbURL);
-});
+    mongoose.connection.on('connected', () => {
+        console.log('Mongoose connected to ' + dbURL);
+    });
+};
 
 mongoose.connection.on('error', err => {
     console.log('Error: ' + err);
@@ -68,16 +67,6 @@ process.on('SIGTERM', () => {
     });
 });
 
-if (process.env.NODE_ENV === 'production') {
-    connectDB();
-}
-else {
-    connect();
-}
 require('./products');
 
-//.then(() => {
-//app.listen(PORT, () => {
-//    console.log("listening for requests");
-//});
- //   })
+module.exports = connectDB;
