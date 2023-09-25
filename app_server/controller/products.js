@@ -3,7 +3,7 @@ const apiOptions = {
     server: "http://localhost:3000"
 };
 if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = 'https://petneedstore.cyclic.app';
+    apiOptions.server = 'https://petneedstore.cyclic.cloud';
 };
 
 const renderHomepage = (req, res, responseBody) => {
@@ -28,6 +28,18 @@ const renderDetailPage = (req, res, product) => {
     });
 };
 
+const renderReviewForm = (req, res, body) => {
+    res.render('product-review-form', {
+        title: 'Add Review',
+        imgSrc: `${body.imgSrc}`,
+        productid: body._id,
+        pageHeader: {
+            title: `${body.name} - ${body.company.name}`
+        },
+        error: req.query.err
+    });
+};
+
 const showError = (req, res, status) => {
     let title = '';
     let content = '';
@@ -44,6 +56,60 @@ const showError = (req, res, status) => {
         content
     });
 };
+
+const doAddReview = (req, res, product) => {
+    const productid = req.params.productid;
+    const path = `/api/products/${productid}/reviews`;
+    const postdata = {
+        author: req.body.name,
+        rating: parseInt(req.body.rating, 10),
+        reviewText: req.body.review
+    };
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'POST',
+        json: postdata
+    };
+    if (!postdata.author || !postdata.rating || !postdata.reviewText) {
+        res.redirect(`/product/${productid}/review/new?err=val`);
+    } else {
+        request(
+            requestOptions,
+            (err, { statusCode }, { name }) => {
+                if (statusCode === 201) {
+                    res.redirect(`/product/${productid}`);
+                } else if (statusCode === 400 && name && name === 'ValidationError') {
+                    res.redirect(`/product/${productid}/review/new?err=val`);
+                } else if (statusCode === 400) {
+                    console.log("Waste Error");
+                    showError(req, res, statusCode);
+                } else {
+                    showError(req, res, statusCode);
+                }
+            }
+        )
+    };
+};
+
+const getProductInfo = (req, res, callback) => {
+    const path = `/api/products/${req.params.productid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {}
+    };
+    request(
+        requestOptions,
+        (err, { statusCode }, body) => {
+            if (statusCode === 200) {
+                callback(req, res, body);
+            } else {
+                showError(req, res, statusCode);
+            }
+        });
+};
+
+
 
 const homelist = (req, res) => {
     const path = '/api/products';
@@ -63,21 +129,12 @@ const homelist = (req, res) => {
 
 /* GET 'Product info' page */
 const productInfo = (req, res) => {
-    path = `/api/products/${req.params.productid}`;
-    requestOptions = {
-        url: `${apiOptions.server}${path}`,
-        method: "GET",
-        json: {},
-        qs: {}
-    };
-    request(requestOptions, (err, {statusCode} , body) => {
-        if (statusCode === 200)
-            renderDetailPage(req, res, body);
-        else showError(req, res, statusCode);
-    });
+    getProductInfo(req, res,
+        (req, res, responseData) => renderDetailPage(req, res, responseData)
+    );
 };
 
-/*GET 'Add product' page */
+/* GET 'Add product' page */
 const addProduct = (req, res) => {
     res.render('product-add-form', {
         title: 'Add Product'
@@ -86,15 +143,15 @@ const addProduct = (req, res) => {
 
 /* GET 'Add review' page */
 const addReview = (req, res) => {
-    res.render('product-review-form', {
-        title: 'Add review',
-        product: 'Pedigree'
-    });
+    getProductInfo(req, res,
+        (req, res, responseData) => renderReviewForm(req, res, responseData)
+    );
 };
     
 module.exports = {
     homelist,
     productInfo,
     addProduct,
-    addReview
+    addReview,
+    doAddReview
 };

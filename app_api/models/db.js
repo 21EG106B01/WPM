@@ -5,7 +5,7 @@ const readLine = require('readline');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let dbURL = 'mongodb://127.0.0.0.1/PetNeeds';
+let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 
 const connectDB = async () => {
     try {
@@ -67,6 +67,9 @@ process.on('SIGTERM', () => {
     });
 });
 
-require('./products');
+if (process.env.NODE_ENV === 'production')
+    connectDB();
+else
+    connect();
 
-module.exports = connectDB;
+require('./products');

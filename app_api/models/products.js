@@ -15,15 +15,21 @@ const prodVariationSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-    author: String,
+    author: {
+        type: String,
+        required: true
+    },
     rating: {
         type: Number,
         required: true,
         min: 0,
         max: 5
     },
-    reviewText: String,
-    createdOn: {
+    reviewText: {
+        type: String,
+        required: true
+    },
+    timestamp: {
         type: Date,
         'default': Date.now
     }

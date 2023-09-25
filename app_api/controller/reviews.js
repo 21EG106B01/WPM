@@ -4,10 +4,13 @@ const Prod = mongoose.model('Product');
 async function reviewsCreate(req, res) {
     const productId = req.params.productid;
     try {
-        const rev = await Prod
+        await Prod
             .findById(productId)
             .select('reviews')
-            .then(doAddReview(req, res, product));
+            .then(function (product) {
+                res.status(201);
+                doAddReview(req, res, product);
+            });
     } catch (err) {
         res.status(400)
             .json(err);
@@ -54,11 +57,16 @@ async function reviewsUpdateOne(req, res) {
                     thisReview.reviewText = req.body.reviewText;
                     try {
                         product.save(product)
-                            .then(function (product) {
-                                updateAvgRating(product._id);
-                                res.status(200).json(thisReview);
-                            })
+                            .then(function (err, product) {
+                                if (err) {
+                                    return res.status(400).json(err);
+                                } else {
+                                    updateAvgRating(product._id);
+                                    res.status(200).json(thisReview);
+                                }
+                            });
                     } catch (err) {
+                        console.log(err);
                         return res.status(404).json(err);
                     }
                 }
@@ -104,12 +112,12 @@ async function doAddReview(req, res, product) {
             reviewText
         })
         try {
-            product.save(product)
-            .then(function(product){
-                updateAvgRating(product._id);
-                const thisReview = product.reviews.slice(-1).pop();
-                res.status(201).json(thisReview);
-            });
+            await product.save(product)
+                .then(function (product) {
+                    updateAvgRating(product._id);
+                    const thisReview = product.reviews.slice(-1).pop();
+                    res.status(201).json(thisReview);
+                });
         } catch (err) {
             res.status(400).json(err);
         }
@@ -129,7 +137,10 @@ async function doSetAvgRating(product) {
             product.rating = parseInt(total / count, 10);
             try {
                 await product.save()
-                    .then(console.log('Average rating updated to ${product.rating'));
+                    .then(function (err, product) {
+                        if (err) return res.status(400).json(err);
+                        console.log('Average rating updated to ${product.rating');
+                    });
             } catch (err) {
                 console.log(err);
             }
