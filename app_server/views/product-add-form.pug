@@ -7,7 +7,7 @@ block content
 			h1 Add Product
 	.row
 		.col-12
-			form(action='/api/products', method='post')
+			form(action='/api/products', method='post' enctype="multipart/form-data")
 				.row
 					.col-12
 						h2 Product Description
@@ -27,6 +27,10 @@ block content
 					.col-12.col-md-4
 						label(for='imgSrc') 
 							h3 Insert square image
+						.form-image
+							input#img-input(type="file" name="imgSrc" accept="image/*" required)
+							img#img-input-display(src="" style="display:none;")
+						button.btn.btn-info#img-change(style="display:none;" href="" type="button") Change Image
 						br
 				hr
 
@@ -71,3 +75,38 @@ block content
 						br 
 						br
 						input(type='submit' value='Submit')
+	script.
+		const imgInputDisp = document.getElementById("img-input-display");
+		const imgInput = document.getElementById("img-input");
+		const imgChangeBtn = document.getElementById("img-change");
+		const formImg = document.querySelector(".form-image");
+		imgInput.addEventListener('change', function() {
+			const file = imgInput.files[0];
+			if(file) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					imgInput.style.display = "none";
+					imgInputDisp.src = e.target.result;
+					imgInputDisp.style.display = "block";
+				}
+				formImg.style.backgroundColor = "white";
+				imgChangeBtn.style.display = "block";
+				reader.readAsDataURL(file);
+			}
+		});
+		imgChangeBtn.addEventListener('click', function() {
+			imgInput.addEventListener("change", function (event) {
+				const file = event.target.files[0];
+				if (file) {
+					const reader = new FileReader();
+
+					reader.onload = function (e) {
+						imgInputDisp.src = e.target.result;
+						imgInputDisp.style.display = "block";
+					};
+
+					reader.readAsDataURL(file);
+				}
+			});
+			imgInput.click();
+		});

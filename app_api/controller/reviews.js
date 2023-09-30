@@ -116,7 +116,7 @@ async function doAddReview(req, res, product) {
                 .then(function (product) {
                     updateAvgRating(product._id);
                     const thisReview = product.reviews.slice(-1).pop();
-                    res.status(201).json(thisReview);
+                    res.status(201).redirect('/product/`${product._id}`');
                 });
         } catch (err) {
             res.status(400).json(err);

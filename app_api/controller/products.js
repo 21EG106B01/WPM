@@ -21,7 +21,7 @@ async function productsCreate (req, res) {
             smalDesc: req.body.smalDesc,
             prodDesc: req.body.prodDesc,
             tags: req.body.tags.split(','),
-            imgSrc: `/resources/${req.body.name}.jpeg`,
+            imgSrc: `/resources/${req.file.filename}`,
             prodVar: [{
                 variation: req.body.variation1,
                 price: req.body.price1
@@ -41,7 +41,7 @@ async function productsCreate (req, res) {
         .then(function (product) {
             res
                 .status(201)
-                .json(product);
+                .redirect('/');
         });
     } catch (err) {
         return res

@@ -2,12 +2,23 @@ const express = require('express');
 const router = express.Router();
 const ctrlProducts = require('../controller/products');
 const ctrlReviews = require('../controller/reviews');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/resources/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Math.round(Math.random() * 1E9) + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
 
 // products
 router
     .route('/products')
     .get(ctrlProducts.productsAll)
-    .post(ctrlProducts.productsCreate);
+    .post(upload.single('imgSrc'), ctrlProducts.productsCreate);
 router
     .route('/products/:productid')
     .get(ctrlProducts.productsReadOne)

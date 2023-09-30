@@ -72,7 +72,7 @@ const showError = (req, res, status) => {
     });
 };
 
-const doAddReview = (req, res, product) => {
+const doAddReview = async(req, res) => {
     const productid = req.params.productid;
     const path = `/api/products/${productid}/reviews`;
     const postdata = {
@@ -90,14 +90,11 @@ const doAddReview = (req, res, product) => {
     } else {
         request(
             requestOptions,
-            (err, { statusCode }, { name }) => {
-                if (statusCode === 201) {
+            (err, { statusCode }, response) => {
+                if (statusCode === 201 || statusCode === 302) {
                     res.redirect(`/product/${productid}`);
-                } else if (statusCode === 400 && name && name === 'ValidationError') {
+                } else if (statusCode === 400 && response.name && response.name === 'ValidationError') {
                     res.redirect(`/product/${productid}/review/new?err=val`);
-                } else if (statusCode === 400) {
-                    console.log("Waste Error");
-                    showError(req, res, statusCode);
                 } else {
                     showError(req, res, statusCode);
                 }
