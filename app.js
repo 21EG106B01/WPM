@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dotenv = require('dotenv').config();
+//const { Storage } = require('@google-cloud/storage');
+//const storage = new Storage();
 require('./app_api/models/db');
 
 var indexRouter = require('./app_server/routes/index');

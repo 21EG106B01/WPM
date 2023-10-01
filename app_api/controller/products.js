@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const Prod = mongoose.model('Product');
 const express = require('express');
+const { Storage } = require('@google-cloud/storage');
+const storage = new Storage();
+const bucket = storage.bucket('petneedstore_resources');
+
+const gcdpath = `https://storage.googleapis.com/petneedstore_resources/images/`;
 
 express().use(express.urlencoded({ extended: true }));
 
@@ -15,13 +20,15 @@ async function productsAll(req, res) {
     }
 };
 async function productsCreate (req, res) {
+    let imgSrcVar = {source : "NOT FOUND.png"};
     try {
+        uploadFile(req, res, imgSrcVar);
         const prod = await Prod.create({
             name: req.body.name,
             smalDesc: req.body.smalDesc,
             prodDesc: req.body.prodDesc,
             tags: req.body.tags.split(','),
-            imgSrc: `/resources/${req.file.filename}`,
+            imgSrc: `${gcdpath}${imgSrcVar.source}`,
             prodVar: [{
                 variation: req.body.variation1,
                 price: req.body.price1
@@ -112,10 +119,42 @@ async function productsDeleteOne (req, res) {
     }
 };
 
+async function uploadFile(req, res, imgSrcVar) {
+    const file = req.file;
+    if (!file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    const fileName = "img-" + Math.random().toString(8) + ".jpeg";
+    const gcsFileName = `images/${fileName}`;
+    imgSrcVar.source = `${fileName}`;
+
+    const stream = bucket.file(gcsFileName).createWriteStream({
+        metadata: {
+            contentType: file.mimetype,
+        },
+    });
+
+    stream.on('error', (err) => {
+        console.error(err);
+        return res.status(500).send('Error uploading file to Google Cloud Storage.');
+    });
+
+    stream.on('finish', () => {
+        const publicUrl = `https://storage.googleapis.com/petneedstore_resources/${gcsFileName}`;
+        console.log(`Images saved to ${publicUrl}`);
+        res.status(200);
+    });
+
+    stream.end(file.buffer);
+}
+
+
 module.exports = {
     productsAll,
     productsCreate,
     productsReadOne,
     productsUpdateOne,
-    productsDeleteOne
+    productsDeleteOne,
+    uploadFile
 };

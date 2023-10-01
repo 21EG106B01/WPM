@@ -2,17 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ctrlProducts = require('../controller/products');
 const ctrlReviews = require('../controller/reviews');
-const multer = require('multer');
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/resources/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Math.round(Math.random() * 1E9) + file.originalname);
-    }
-});
-const upload = multer({ storage: storage });
+const upload = require('../middlewares/multer');
 
 // products
 router
@@ -34,4 +24,6 @@ router
     .get(ctrlReviews.reviewsReadOne)
     .put(ctrlReviews.reviewsUpdateOne)
     .delete(ctrlReviews.reviewsDeleteOne);
+
+
 module.exports = router;
