@@ -7,7 +7,8 @@
     "\\app_server",
     "\\app_server\\controller",
     "\\app_server\\routes",
-    "\\app_server\\views"
+    "\\app_server\\views",
+    "\\public"
   ],
   "PreviewInSolutionExplorer": false
 }
