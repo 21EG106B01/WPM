@@ -5,9 +5,9 @@ const readLine = require('readline');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let dbURL = 'mongodb://127.0.0.1/PetNeeds';
+let dbURL = 'mongodb+srv://21eg106b01:anurag123456@cluster0.oltiwis.mongodb.net/PetNeeds?retryWrites=true&w=majority';
 
-const connectDB = async () => {
+const connectDB = async() => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
         console.log(`MongoDB Connected Online: ${conn.connection.host}`);
@@ -45,7 +45,7 @@ if (process.platform === 'win32') {
 
 async function gracefulShutdown(msg) {
     const closed = await mongoose.connection.close()
-        .then(function () {
+        .then(function() {
             console.log(`Mongoose disconnected through ${msg}`);
             process.exit();
         });

@@ -19,7 +19,7 @@ block content
 				option Credit Card
 				option Cash on Delivery
 			.row.pay-btn
-				button.btn.btn-success(type="button") Pay
+				button.btn.btn-success(type="button" onclick="location.href='/thankyou'") Pay
 				button.btn.btn-outline-dark(type="button" onclick=`location.href="/product/${productid}"`) Cancel
 		.card.col-12.col-md-4
 			img.review-img(src=`${imgSrc}`)
