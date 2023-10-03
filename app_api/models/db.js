@@ -5,7 +5,7 @@ const readLine = require('readline');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let dbURL = 'mongodb+srv://21eg106b01:anurag123456@cluster0.oltiwis.mongodb.net/PetNeeds?retryWrites=true&w=majority';
+let dbURL = 'mongodb://127.0.0.1/PetNeeds';
 
 const connectDB = async() => {
     try {
