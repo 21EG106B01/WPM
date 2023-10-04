@@ -5,6 +5,14 @@ const about = (req, res) => {
     });
 };
 
+const thankyou = (req, res) => {
+    res.render('generic-text', {
+        title: 'Thank You For Your Purchase',
+        content: ['At PetNeeds, we are dedicated to enhancing the bond between pets and owners through top- quality products that cater to unique needs.']
+    });
+};
+
 module.exports = {
-    about
+    about,
+    thankyou
 };

@@ -14,6 +14,8 @@ router
     .post(ctrlProducts.doAddReview);
 router.get('/product/:productid/buy', ctrlProducts.buyProduct);
 
+router.get('/thankyou', ctrlOthers.thankyou);
+
 router.get('/about', ctrlOthers.about);
 
 module.exports = router;
