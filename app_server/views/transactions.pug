@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 Transaction List
+    each transaction in transactions
+        .card
+            b Transaction ID: #{transaction.transacId}
+            p
+                | Product IDs: #{transaction.productId.join(', ')}
+            p
+                | Cost: #{transaction.cost.join(', ')}
+            p
+                | Quantity: #{transaction.quantity.join(', ')}
+            p Total: #{transaction.total}
+            p Payment Method: #{transaction.paymethod}
+            p Address: #{transaction.address}
+            p Special Instructions: #{transaction.special}

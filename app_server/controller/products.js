@@ -41,17 +41,17 @@ const renderReviewForm = (req, res, body) => {
     });
 };
 
-const renderBuyProduct = (req, res, body) => {
+const renderBuyProduct = (req, res, cart) => {
     res.render('buy-product', {
-        title: `${body.name}`,
-        imgSrc: `${body.imgSrc}`,
-        pageHeader: {
-            title: `${body.name} - ${body.company.name}`
-        },
-        variation: `${body.prodVar[0].variation}`,
-        price: `${body.prodVar[0].price}`,
-        caddress: `${body.company.address}`,
-        productid: body._id
+        title: "Your Cart",
+        cart
+    })
+}
+
+const renderTransaction = (req, res, transactions) => {
+    res.render('transactions', {
+        title: "Transactions",
+        transactions
     })
 }
 
@@ -121,7 +121,41 @@ const getProductInfo = (req, res, callback) => {
         });
 };
 
+const getCartInfo = (req, res, callback) => {
+    const path = `/api/cart`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {}
+    };
+    request(
+        requestOptions,
+        (err, { statusCode }, body) => {
+            if (statusCode === 200) {
+                callback(req, res, body);
+            } else {
+                showError(req, res, statusCode);
+            }
+        });
+};
 
+const getTranscInfo = (req, res, callback) => {
+    const path = `/api/cart/complete`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {}
+    };
+    request(
+        requestOptions,
+        (err, { statusCode }, body) => {
+            if (statusCode === 200) {
+                callback(req, res, body);
+            } else {
+                showError(req, res, statusCode);
+            }
+        });
+};
 
 const homelist = (req, res) => {
     const path = '/api/products';
@@ -146,6 +180,13 @@ const productInfo = (req, res) => {
     );
 };
 
+/* GET 'Add review' page */
+const addReview = (req, res) => {
+    getProductInfo(req, res,
+        (req, res, responseData) => renderReviewForm(req, res, responseData)
+    );
+};
+
 /* GET 'Add product' page */
 const addProduct = (req, res) => {
     res.render('product-add-form', {
@@ -154,17 +195,16 @@ const addProduct = (req, res) => {
 };
 
 const buyProduct = (req, res) => {
-    getProductInfo(req, res,
+    getCartInfo(req, res,
         (req, res, responseData) => renderBuyProduct(req, res, responseData)
     );
 };
 
-/* GET 'Add review' page */
-const addReview = (req, res) => {
-    getProductInfo(req, res,
-        (req, res, responseData) => renderReviewForm(req, res, responseData)
+const transcAll = (req, res) => {
+    getTranscInfo(req, res,
+        (req, res, responseData) => renderTransaction(req, res, responseData)
     );
-};
+}
     
 module.exports = {
     homelist,
@@ -172,5 +212,6 @@ module.exports = {
     addProduct,
     addReview,
     doAddReview,
-    buyProduct
+    buyProduct,
+    transcAll
 };

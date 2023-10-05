@@ -1,4 +1,5 @@
-doctype html
+﻿doctype html
+include _includes/sharedHTMLfunctions
 html
 	head
 		meta(name='viewpoint', content='width=device-width, initial-scale=1.0')
@@ -20,6 +21,8 @@ html
 							a.nav-link(href='/new/product') Add Product
 						li.nav-item
 							a.nav-link(href='/about/') About
+						li.nav-item(style="float: right;")
+							a.nav-link(href="/cart") Cart 🛒
 	.container.content
 		block content
 		

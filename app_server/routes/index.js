@@ -12,7 +12,9 @@ router
     .route('/product/:productid/review/new')
     .get(ctrlProducts.addReview)
     .post(ctrlProducts.doAddReview);
-router.get('/product/:productid/buy', ctrlProducts.buyProduct);
+
+router.get('/cart', ctrlProducts.buyProduct);
+router.get('/transactions', ctrlProducts.transcAll);
 
 router.get('/thankyou', ctrlOthers.thankyou);
 

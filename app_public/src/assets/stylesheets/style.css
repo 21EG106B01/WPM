@@ -6,10 +6,6 @@ body {
     background-color: #fff;
 }
 
-.content {
-    margin-top: 60px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Kanit', cursive;
 }
@@ -208,9 +204,8 @@ hr{
 }
 
 .pay-btn {
-    display: flex;
-    justify-content: center;
     gap: 10px;
+    margin: 10px auto;
 }
 
 .btn {
@@ -234,55 +229,4 @@ hr{
     width: 10cm;
     max-width: 100%;
     max-height: 10cm;
-}
-
-.cost-struct b, .cost-struct p, .cost-struct h4 {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.cost-struct h4 {
-    color: green;
-}
-
-.cost-struct span{
-    text-align: right;
-}
-
-.prod-quantity {
-    border: 1px solid rgba(150, 150, 160, 0);
-    display: flex;
-    justify-content: space-between;
-    margin: 5px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    align-items: center;
-}
-
-.prod-quantity:hover {
-    border: 1px solid rgba(200, 200, 220, 0.9);
-    cursor: pointer;
-}
-
-.prod-quantity img{
-    max-width: 50px;
-    max-height: 50px;
-}
-
-.increment-btn, .decrement-btn {
-    margin: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-#quantity-number {
-    width: 30px;
-    padding: 3px;
-    text-align: center;
-}
-
-.prod-cost {
-    width: 80px;
 }

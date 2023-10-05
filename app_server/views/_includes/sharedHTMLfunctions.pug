@@ -12,3 +12,92 @@ mixin formatDate(dateString)
 	-const y = date.getFullYear();
 	-const output = `${d} ${m} ${y}`;
 	=output
+
+mixin quanChange()
+	script.
+		function costUpdate(cost, op){
+			let prodcost = document.getElementById("prod-cost");
+			let gstcost = document.getElementById("gst-cost");
+			let delcost = document.getElementById("delivery");
+			let totalcost = document.getElementById("total-cost");
+			let totalCostInput = document.getElementById('total-cost-input');
+			let oper = op;
+			if (oper === '+') prodcost.textContent = parseInt(prodcost.textContent) + cost;
+			if (oper === '-') prodcost.textContent = parseInt(prodcost.textContent) - cost;
+			gstcost.textContent = (parseInt(prodcost.textContent) * (5 / 100)).toFixed(2);
+			delcost.textContent = (parseInt(prodcost.textContent) * (10 / 100)).toFixed(2);
+			totalcost.textContent = parseInt(prodcost.textContent) + parseInt(gstcost.textContent) + parseInt(delcost.textContent);
+			totalCostInput.value = totalcost.textContent;
+		}
+		costUpdate(" ", " ");
+
+		const counters = document.querySelectorAll('.count');
+		let prodTotalCost = 0;
+		document.querySelectorAll('.counter').forEach(counter => {
+			const incrementButton = counter.querySelector('.increment-btn');
+			const decrementButton = counter.querySelector('.decrement-btn');
+			const countDisplay = counter.querySelector('.count');
+			const prodId = counter.querySelector('.prod-id').value;
+			const productcost = parseInt(counter.querySelector('.prod-cost').textContent);
+			prodTotalCost = prodTotalCost + (parseInt(countDisplay.textContent) * productcost);
+			incrementButton.addEventListener('mouseup', () => {
+				let count = parseInt(countDisplay.textContent);
+				count++;
+				countDisplay.textContent = count;
+				costUpdate(productcost, '+');
+				updateMongo(prodId, count);
+			});
+
+			decrementButton.addEventListener('mouseup', () => {
+				let count = parseInt(countDisplay.textContent);
+				count--;
+				if (countDisplay.textContent = count > 0){
+					countDisplay.textContent = count;
+					costUpdate(productcost, '-');
+					updateMongo(prodId, count);
+				}
+				else{ 
+					countDisplay.textContent = 0;
+					deleteMongo(prodId);
+					location.reload(true);
+				}
+			});
+			setcost(prodTotalCost);
+		});
+
+		function setcost(prodTotalCost) {
+			document.getElementById("prod-cost").textContent = prodTotalCost;
+			document.getElementById("gst-cost").textContent = (prodTotalCost * (5/100)).toFixed(2);
+			document.getElementById("delivery").textContent = (prodTotalCost * (10/100)).toFixed(2);
+			document.getElementById("total-cost").textContent = (prodTotalCost + (prodTotalCost * (5/100)) + (prodTotalCost * (10/100))).toFixed(2);
+			document.getElementById('total-cost-input').value = (prodTotalCost + (prodTotalCost * (5/100)) + (prodTotalCost * (10/100))).toFixed(2);
+		}
+
+		async function updateMongo(prodId, quant){
+			try {
+				const response = await fetch(`/api/cart/${prodId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ quantity:  `${quant}`}) 
+				});
+
+				if (response.ok) {
+					const updatedData = await response.json();
+					console.log('Data updated:', updatedData);
+				} else {
+					console.error('Failed to update data');
+				}
+			} catch (error) {
+				console.error('Error updating data:', error);
+			}
+		}
+		async function deleteMongo(prodId) {
+			try {
+				const response = await fetch(`/api/cart/${prodId}`, {
+				method: 'DELETE'});
+			} catch(error) {
+				console.log(error);
+			}
+		}

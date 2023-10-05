@@ -3,24 +3,54 @@ extends layout
 block content
 	.row.banner
 		.col-12
-			h1 Buy Product
-		.card.col-12.col-md-8
-			h3= pageHeader.title
-			h5 #{variation} - &#8377 #{price}
+			h1 Your Cart
+		.card.col-12.col-md-9
+			each product in cart
+				.prod-quantity
+					img(src=`${product.productId.imgSrc}`)
+					h4= product.productId.name
+					.quantity(style="float: right;")
+						h4.counter
+							input.prod-id(type="hidden" value=`${product._id}`)
+							span.prod-cost= product.cost
+							button.btn.btn-secondary.decrement-btn(type="button" value="-") -
+							span#quantity-number.count= product.quantity
+							button.btn.btn-secondary.increment-btn(type="button" value="+") +
+		.card.col-12.col-md-3.cost-struct
+			b Product cost: 
+				span#prod-cost 0
+			p GST: 
+				span#gst-cost 0
+			p Delivery: 
+				span#delivery 0
+			h4 Total: 
+				span#total-cost 0
+		.card.col-12
 			h5(style="color: #4af;") Delivery in 4-5 business days
-			p Delivery from: #{caddress}
-			p Add special delivery instructions:
-			textarea(rows="3" cols="30")
-			h5 Select payment method:
-			select
-				option(value="PayPal") PayPal
-				option Paytm
-				option Debit Card
-				option Credit Card
-				option Cash on Delivery
-			.row.pay-btn
-				button.btn.btn-success(type="button" onclick="location.href='/thankyou'") Pay
-				button.btn.btn-outline-dark(type="button" onclick=`location.href="/product/${productid}"`) Cancel
-		.card.col-12.col-md-4
-			img.review-img(src=`${imgSrc}`)
-
+			p Delivery from: 
+			each product in cart
+				p= product.productId.company.address
+			form(action="/api/cart/complete" method="post")
+				.row
+					.col-12.col-md-6
+						each product in cart
+							input(type="hidden" value=`${product.productId._id}` name="prodArray[]")
+							input(type="hidden" value=`${product.cost}` name="cost[]")
+							input(type="hidden" value=`${product.quantity}` name="quantity[]" id="quant-input")
+						input(type="hidden" id="total-cost-input" name="total")
+						p Add special delivery instructions:
+						textarea(rows="3" cols="50" name="special" width="100%")
+						h5 Select payment method:
+						select(name="paymethod")
+							option(value="PayPal") PayPal
+							option(value="PayTM") PayTM
+							option(value="Debit Card") Debit Card
+							option(value="Credit Card") Credit Card
+							option(value="COD") Cash on Delivery
+					.col-12.col-md-6
+						p Address :
+						textarea(rows="3" cols="50" name="address")
+					.col-12.pay-btn
+						button.btn.btn-success(onclick="location.href='/thankyou'") Pay
+						button.btn.btn-outline-dark(type="button" onclick=`location.href="/product/${productid}"`) Cancel
+	+quanChange()

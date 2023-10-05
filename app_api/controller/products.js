@@ -95,7 +95,7 @@ async function productsUpdateOne (req, res) {
             });
         try {
             product.save(prod)
-                .then(res.status(200).json(loc));
+                .then(res.status(200).json(prod));
         } catch (err) {
             res.status(404).json(err);
         }
@@ -148,7 +148,6 @@ async function uploadFile(req, res, imgSrcVar) {
 
     stream.end(file.buffer);
 }
-
 
 module.exports = {
     productsAll,

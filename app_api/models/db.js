@@ -73,3 +73,4 @@ else
     connect();
 
 require('./products');
+require('./cart');
