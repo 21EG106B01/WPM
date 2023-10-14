@@ -17,16 +17,17 @@ async function addToCart(req, res) {
 
         if (Item) {
             Item.quantity += 1;
+            Item.totalCost = Item.quantity * Item.cost;
             await Item.save();
         } else {
             const cost = await findCost(productId);
             Item = await cartItem.create({
                 productId: productId,
                 quantity: 1,
-                cost: cost
+                cost: cost,
+                totalCost: cost
             });
         }
-
         res.status(201).redirect(`/product/${productId}`);
     } catch (err) {
         res.status(400).json(err);
@@ -72,11 +73,13 @@ async function deleteCartItem(req, res) {
 
 async function completeCart(req, res) {
     try {
+        const cartItems = await cartItem.find({});
         await Transac.create({
             transacId: Math.floor(Math.random(8) * 900000000),
-            productId: req.body.prodArray,
-            cost: req.body.cost,
-            quantity: req.body.quantity,
+            productId: cartItems.map(item => item.productId), // Extract product IDs from cart items
+            cost: cartItems.map(item => item.cost), // Extract costs from cart items
+            quantity: cartItems.map(item => item.quantity), // Extract quantities from cart items
+            totalCosts: cartItems.map(item => item.totalCost),
             total: req.body.total,
             paymethod: req.body.paymethod,
             address: req.body.address,

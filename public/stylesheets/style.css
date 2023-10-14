@@ -22,6 +22,10 @@ legend {
     font-family: 'Kanit', cursive;
 }
 
+.badge {
+    padding: 5px;
+}
+
 .navbar {
     background-color: rgba(0,0,0,0.8);
     border-bottom: 4px solid rgba(50,150,255,0.8);
@@ -42,6 +46,10 @@ legend {
     border-bottom: 1px solid rgba(245, 245, 255, 0.2);
     margin-bottom: 1.5em;
     padding-bottom: 0.5em;
+}
+
+.review-card {
+    margin-top: 1em;
 }
 
 .review-header {
@@ -65,11 +73,6 @@ legend {
 
 .reviewTimestamp {
     float: right;
-}
-
-.badge-default, .btn-primary {
-    background-color: #ad1d28;
-    border-color: #911821;
 }
 
 .badge {
@@ -285,4 +288,18 @@ hr{
 
 .prod-cost {
     width: 80px;
+}
+
+.transac-prods-info * {
+    text-align: center;
+    margin: 0;
+}
+
+.transac-prods-info {
+    overflow: auto;
+    max-height: 5cm;
+}
+
+.text-themed {
+    color: rgba(50, 150, 255, 1);
 }

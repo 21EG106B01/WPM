@@ -3,15 +3,32 @@ extends layout
 block content
     h1 Transaction List
     each transaction in transactions
-        .card
-            b Transaction ID: #{transaction.transacId}
-            p
-                | Product IDs: #{transaction.productId.join(', ')}
-            p
-                | Cost: #{transaction.cost.join(', ')}
-            p
-                | Quantity: #{transaction.quantity.join(', ')}
-            p Total: #{transaction.total}
-            p Payment Method: #{transaction.paymethod}
-            p Address: #{transaction.address}
-            p Special Instructions: #{transaction.special}
+        .card.mb-auto
+            .row
+                .col-12
+                    b Transaction ID: #{transaction.transacId}
+            hr
+            .row.transac-prods-info
+                .col-3
+                    h3 Product
+                    each product in transaction.productId
+                        p.transac-prods #{product.name}
+                .col-3
+                    h3 Cost
+                    each cost in transaction.cost
+                        p.transac-prods #{cost}
+                .col-3
+                    h3 Quantity
+                    each quantity in transaction.quantity
+                        p.transac-prods #{quantity}
+                .col-3
+                    h3 Total
+                    each totalCost in transaction.totalCosts
+                        p.transac-prods #{totalCost}
+            hr
+            .row
+                .col-12
+                    h5.text-themed Total Amount: #{transaction.total}
+                    p Payment Method: #{transaction.paymethod}
+                    p Address: #{transaction.address}
+                    p Special Instructions: #{transaction.special}

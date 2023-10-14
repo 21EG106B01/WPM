@@ -1,4 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+export class Product {
+  _id: string;
+  name: string;
+  distance: number;
+  address: string;
+  rating: number;
+  facilities: string[];
+}
 
 @Component({
   selector: 'app-home-list',
@@ -6,5 +15,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-list.component.css']
 })
 export class HomeListComponent {
-  name = "Dog Food"
+  name= "Dog Food"
 }

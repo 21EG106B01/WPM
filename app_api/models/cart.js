@@ -13,7 +13,8 @@ const cartItemSchema = new Schema({
         required: true,
         default: 1
     },
-    cost: Number
+    cost: Number,
+    totalCost: Number
 });
 
 const transacSchema = new Schema({
@@ -24,6 +25,7 @@ const transacSchema = new Schema({
         required: true
     }],
     cost: [Number],
+    totalCosts: [Number],
     quantity: [Number],
     total: Number,
     paymethod: String,

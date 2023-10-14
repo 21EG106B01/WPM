@@ -45,7 +45,7 @@ mixin quanChange()
 				count++;
 				countDisplay.textContent = count;
 				costUpdate(productcost, '+');
-				updateMongo(prodId, count);
+				updateMongo(prodId, count, count*productcost);
 			});
 
 			decrementButton.addEventListener('mouseup', () => {
@@ -54,7 +54,7 @@ mixin quanChange()
 				if (countDisplay.textContent = count > 0){
 					countDisplay.textContent = count;
 					costUpdate(productcost, '-');
-					updateMongo(prodId, count);
+					updateMongo(prodId, count, count*productcost);
 				}
 				else{ 
 					countDisplay.textContent = 0;
@@ -73,19 +73,19 @@ mixin quanChange()
 			document.getElementById('total-cost-input').value = (prodTotalCost + (prodTotalCost * (5/100)) + (prodTotalCost * (10/100))).toFixed(2);
 		}
 
-		async function updateMongo(prodId, quant){
+		async function updateMongo(prodId, quant, totalCost){
 			try {
 				const response = await fetch(`/api/cart/${prodId}`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ quantity:  `${quant}`}) 
+				body: JSON.stringify({ quantity:  `${quant}`, totalCost: `${totalCost}`}) 
 				});
 
 				if (response.ok) {
 					const updatedData = await response.json();
-					console.log('Data updated:', updatedData);
+					console.log('Data updated');
 				} else {
 					console.error('Failed to update data');
 				}

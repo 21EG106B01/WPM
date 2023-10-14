@@ -16,12 +16,12 @@ html
 				button.navbar-toggler.navbar-toggler-left(type='button', data-toggle='collapse', data-target='#navbarMain')
 					span.navbar-toggler-icon.navbar-dark.menubtn
 				#navbarMain.navbar-collapse.collapse
-					ul.navbar-nav.mr-auto
+					ul.navbar-nav.w-100
 						li.nav-item
 							a.nav-link(href='/new/product') Add Product
 						li.nav-item
 							a.nav-link(href='/about/') About
-						li.nav-item(style="float: right;")
+						li.nav-item.ml-auto
 							a.nav-link(href="/cart") Cart 🛒
 	.container.content
 		block content

@@ -35,8 +35,8 @@ block content
 					.col-12.col-md-6
 						each product in cart
 							input(type="hidden" value=`${product.productId._id}` name="prodArray[]")
-							input(type="hidden" value=`${product.cost}` name="cost[]")
-							input(type="hidden" value=`${product.quantity}` name="quantity[]" id="quant-input")
+							input(type="hidden" value=`${product.cost}` name="costArray[]")
+							input(type="hidden" value=`${product.quantity}` name="quantArray[]" id="quant-input")
 						input(type="hidden" id="total-cost-input" name="total")
 						p Add special delivery instructions:
 						textarea(rows="3" cols="50" name="special" width="100%")
