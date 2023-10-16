@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
+    "",
     "\\app_public",
+    "\\app_public\\build",
     "\\app_public\\src",
     "\\app_public\\src\\app",
+    "\\app_public\\src\\app\\framework",
     "\\app_public\\src\\app\\home-list",
-    "\\app_public\\src\\app\\test"
+    "\\app_public\\src\\assets",
+    "\\app_public\\src\\assets\\stylesheets"
   ],
+  "SelectedNode": "\\app_public\\src\\assets\\stylesheets\\style.css",
   "PreviewInSolutionExplorer": false
 }

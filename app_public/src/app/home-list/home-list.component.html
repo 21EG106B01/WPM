@@ -1,22 +1,24 @@
-<div class="card col-lg-4 col-md-6 col-12 card-block prod-card" onclick="location.href = '/product/6509369321b8ef98d5bf04a2';">
-    <div class="img-container col-12">
-        <img class="prod-img" src="https://storage.googleapis.com/petneedstore_resources/images/pedigree.jpeg">
-    </div>
-    <div class="prod-content col-12">
-        <h4>
-            <a href="/product/6509369321b8ef98d5bf04a2">{{name}} &nbsp;<small>Pedigree</small></a>
-        </h4>
-        <p class="prod-price">₹ 260</p>
-        <small>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-        </small>
-        <p class="prod-desc">Pedigree high quality dog food</p>
-        &nbsp;<span class="badge badge-warning">Dog</span>
-        &nbsp;<span class="badge badge-warning">Food</span>
-        &nbsp;<span class="badge badge-warning">Medium</span>
+<div class="row">
+    <div *ngFor="let product of products" class="card col-lg-4 col-md-6 col-12 card-block prod-card" (click)="redirectToProduct(product._id)">
+        <div class="img-container col-12">
+            <img class="prod-img" src="{{product.imgSrc}}">
+        </div>
+        <div class="prod-content col-12">
+            <h4>
+                <a href="/product/{{product._id}}">{{product.name}} &nbsp;<small>{{product.company.name | uppercase}}</small></a>
+            </h4>
+            <p class="prod-price">{{product.prodVar[0].price | currency:'INR':true}}</p>
+            <small>
+                <i class="fa{{ product.rating < 1 ? 'r' : 's' }} fa-star"></i>
+                <i class="fa{{ product.rating < 2 ? 'r' : 's' }} fa-star"></i>
+                <i class="fa{{ product.rating < 3 ? 'r' : 's' }} fa-star"></i>
+                <i class="fa{{ product.rating < 4 ? 'r' : 's' }} fa-star"></i>
+                <i class="fa{{ product.rating < 5 ? 'r' : 's' }} fa-star"></i>
+            </small>
+            <p class="prod-desc">{{product.smalDesc}}</p>
+            <div class="tags">
+                &nbsp;<span *ngFor="let tag of product.tags" class="badge badge-warning">{{tag}}</span>
+            </div>
+        </div>
     </div>
 </div>

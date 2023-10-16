@@ -1,0 +1,33 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-dark">
+    <div class="container">
+        <a routerLinkActive="active" class="navbar-brand" routerLink="">PetNeeds</a>
+        <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarMain">
+            <span class="navbar-toggler-icon navbar-dark menubtn"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarMain">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="new/product">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link" routerLink="about">About</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a routerLinkActive="active" class="nav-link" routerLink="cart">Cart 🛒</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container content">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="footer py-3 bg-dark">
+    <div class="row footer-row">
+        <div class="col-12">
+            <small>© PETNEEDSTORE Team-11</small>
+        </div>
+    </div>
+</footer>

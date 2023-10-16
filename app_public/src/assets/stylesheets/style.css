@@ -4,6 +4,12 @@ body {
     font-family: "Cabin", Arial, sans-serif;
     color: #112;
     background-color: #fff;
+    min-height: 90vh;
+}
+
+.content {
+    margin-top: 10vh;
+    min-height: 80vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,6 +28,16 @@ legend {
     background-color: rgba(0,0,0,0.8);
     border-bottom: 4px solid rgba(50,150,255,0.8);
     font-family: Kanit;
+}
+
+footer {
+  height: 8vh;
+  overflow: hidden ;
+  margin-top: 2vh;
+}
+
+.footer-row {
+    margin: 0;
 }
 
 .card {
@@ -70,6 +86,11 @@ legend {
 
 .badge {
     cursor: pointer;
+    margin: 2px;
+}
+
+.bg-dark {
+    color: white;
 }
 
 h4 a, h4 a:hover {
